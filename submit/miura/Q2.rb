@@ -10,7 +10,7 @@ end
 	print "\n"
 end
 
-(1...101).each do |i|
+(1..100).each do |i|
 	if i % 3 == 0 && i % 5 == 0
 		puts "Fizz Buzz\n"
 	elsif i % 3 == 0
