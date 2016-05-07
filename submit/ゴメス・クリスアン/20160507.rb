@@ -1,3 +1,4 @@
+require "pp"
 ### 問題１
 
 def prime
@@ -33,3 +34,19 @@ end
 yearLeap = Years.new
 
 yearLeap.leapYear
+
+### 問題３
+
+class Square 
+    def initialize
+        @square = Array.new(3,0).map{Array.new(3,0)}
+    end
+    
+    def impression
+        pp @square
+    end
+end
+
+magic = Square.new
+
+magic.impression
