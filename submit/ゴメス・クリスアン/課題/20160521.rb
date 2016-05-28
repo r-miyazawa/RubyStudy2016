@@ -46,9 +46,9 @@ class Player
 		tmp_2 = @number[1].to_i
 		tmp_3 = @number[2].to_i
 		
-		if @number[0].to_i === 0
+		if @number.size === 1 && @number[0].to_i === 0
 			exit
-		elsif @number.size > 3 || @number.size < 4
+		elsif @number.size > 3 || @number.size < 3
 			print ("Error do it again \n")
 			read
 		elsif tmp_1 === 0
