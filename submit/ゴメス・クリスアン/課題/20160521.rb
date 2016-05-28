@@ -46,7 +46,9 @@ class Player
 		tmp_2 = @number[1].to_i
 		tmp_3 = @number[2].to_i
 		
-		if @number.size > 3
+		if @number[0].to_i === 0
+			exit
+		elsif @number.size > 3 || @number.size < 4
 			print ("Error do it again \n")
 			read
 		elsif tmp_1 === 0
@@ -131,12 +133,24 @@ class Pc
 	end
 end
 
-puts "Hit And Blow"
-puts "Insert 3 numbers"
+class Game
+	def start
+		puts "Hit And Blow"
+		puts "0 to Exit"
+		puts "Insert 3 numbers"
 
-pc = Pc.new
+		pc = Pc.new
 
-player = Player.new
-player.check
+		player = Player.new
+		player.check
 
-pc.compare(player.number)
+		pc.compare(player.number)
+		check
+	end
+	def check
+		start
+	end
+end
+
+game = Game.new
+game.start
