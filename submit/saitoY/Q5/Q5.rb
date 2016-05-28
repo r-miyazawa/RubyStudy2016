@@ -23,7 +23,7 @@ class HAB
     result = true
     for i in 0..2
       for j in 0..2
-        puts "(#{i})#{@ary[i]}  (#{j})#{ans[j]}"
+        #puts "(#{i})#{@ary[i]}  (#{j})#{ans[j]}"
         if (i == j) && (@ary[i] == ans[j].to_i)
           hit += 1
         elsif @ary[i] == ans[j].to_i
