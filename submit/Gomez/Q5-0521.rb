@@ -48,7 +48,7 @@ class Player
 		
 		if @number.size === 1 && @number[0].to_i === 0
 			exit
-		elsif @number.size > 3 || @number.size < 3
+		elsif @number.size != 3
 			print ("Error do it again \n")
 			read
 		elsif tmp_1 === 0
@@ -109,19 +109,14 @@ class Pc
 		tmp_3 = @ranNumber[2].to_i
 		
 		if @ranNumber.size > 3
-			print ("Error do it again \n")
 			read
 		elsif tmp_1 === 0
-			print ("Error do it again \n")
 			read
 		elsif tmp_2 === tmp_1
-			print ("Error do it again \n")
 			read
 		elsif tmp_2 === tmp_3
-			print ("Error do it again \n")
 			read
 		elsif tmp_1 === tmp_3
-			print ("Error do it again \n")
 			read
 		end
 	end
