@@ -10,7 +10,7 @@ class Deck
 
   # 山札を並び替える
   def shuffle
-    @stack.shuffle!
+    return @stack.shuffle!
   end
   
   # 残りの山札を取得

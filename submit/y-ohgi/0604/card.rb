@@ -48,5 +48,3 @@ class Card
   end
   
 end
-
-card = Card.new(13, 2)
