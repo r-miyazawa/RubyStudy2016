@@ -14,9 +14,11 @@ class Card
     # 例外処理
     if !num.kind_of?(Integer) || !suit.kind_of?(Integer)
       return
+    elsif num === 0 && suit === 0
+      # ジョーカー
     elsif num < 1 || num > 13
       return
-    elsif suit < 0 || suit > 4
+    elsif suit < 1 || suit > 4
       return
     end
 
