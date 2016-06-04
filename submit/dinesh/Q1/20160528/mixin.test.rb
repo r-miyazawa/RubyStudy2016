@@ -1,0 +1,12 @@
+module M
+	def meth
+		"meth"
+	end
+end
+
+class C
+	include M # モジュール M をインクルードする。
+end
+
+c = C.new
+p c.meth #=> meth
