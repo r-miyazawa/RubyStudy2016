@@ -25,7 +25,8 @@ class DeckCard < Test::Unit::TestCase
 
   
   sub_test_case "52枚の山札" do
-    def setup
+    # 13のナンバー, 4つのスートの標準的な山札を作成
+    def make_normaldeck
       @deck = Deck.new
 
       (1..13).each do |num|
@@ -36,14 +37,17 @@ class DeckCard < Test::Unit::TestCase
     end
     
     test "52毎存在するか" do
+      make_normaldeck
       assert_equal 52, @deck.get.length
     end
 
     test "１枚引く" do
+      make_normaldeck
       assert_equal [1, 1], @deck.draw_card.get_detail
     end
 
     test "52回引く" do
+      make_normaldeck
       (1..13).each do |n|
         (1..4).each do |s|
           assert_equal [n, s], @deck.draw_card.get_detail
@@ -52,6 +56,7 @@ class DeckCard < Test::Unit::TestCase
     end
     
     test "53回引く" do
+      make_normaldeck
       (1..13).each do |n|
         (1..4).each do |s|
           @deck.draw_card.get_detail
@@ -62,6 +67,7 @@ class DeckCard < Test::Unit::TestCase
     end
 
     test "ジョーカーを追加する" do
+      make_normaldeck
       @deck.add_card(Card.new(0, 0))
 
       assert_equal 53, @deck.get.length
@@ -69,6 +75,7 @@ class DeckCard < Test::Unit::TestCase
     end
 
     test "山札を混ぜる" do
+      make_normaldeck
       ds0 = @deck.shuffle[0].get_detail
       ds1 = @deck.shuffle[0].get_detail
       ds2 = @deck.shuffle[0].get_detail
