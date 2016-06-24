@@ -6,16 +6,16 @@
 
 # 与えられた文字列を半角スペースで区切り配列し、その配列を返す
 def splitStr(str)
-  return []
+  return str.split(" ")
 end
 
 # 渡された配列をアルファベット順にソートを行い、その配列を返す
 def sortByAlphabetAry(ary)
-  return []
+  return ary.sort
 end
 
 # 渡された配列の各要素の先頭文字を大文字にし、その配列を返す
 def changeUppercaseAry(ary)
-  
+  return ary.map {|str| str.capitalize}
 end
 
