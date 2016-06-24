@@ -12,30 +12,66 @@
 
 # startnum..endnumまでの配列を作成し、その配列を返す
 def makeNumAry(startnum, endnum)
-  return []
+  return (startnum..endnum).to_a
 end
 
 # 渡された数値が格納された配列を全て100倍し、その配列を返す
 def doHundredfoldNumAry(numary)
-  return []
+  resary = []
+  
+  numary.each do |num|
+    resary << num * 100
+  end
+
+  return resary
 end
 
 # 渡された数値が格納された配列を全て3の倍数を抽出し、その配列を返す
 def getTrebleNumAry(numary)
-  return []
+  resary = []
+
+  numary.each do |num|
+    if num % 3 === 0
+      resary << num
+    end
+  end
+  
+  return resary
 end
 
 # 渡された数値が格納された配列を逆順にし、その配列を返す
 def reverseNumAry(numary)
-  return []
+  return numary.reverse
 end
 
 # 渡された数値が格納された配列の要素全ての和を求め、その数値を返す
 def addNumAry(numary)
-  return 0
+  resnum = 0
+
+  numary.each do |num|
+    resnum += num
+  end
+  
+  return resnum
 end
 
 # 渡された2つの、数値が格納された配列を個々に足しあわせ、その配列を返す
 def sum_array(ary0, ary1)
-  return []
+  resary = []
+
+  longary = ary0
+  shortary = ary1
+  
+  # 配列の長さを確認
+  if longary.length < shortary.length
+    tmpary = longary
+    longary = shortary
+    shortary = tmpary
+  end
+
+  (longary.length).times do |i|
+    resary[i] = longary[i] + shortary[i]
+  end
+  
+  return resary
 end
