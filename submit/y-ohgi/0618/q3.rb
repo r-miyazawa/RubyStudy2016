@@ -10,16 +10,18 @@
 
 # 英語のkeyと日本語のvalueで曜日を表すハッシュを作成
 def makeWday
-  return {}
+  return {:sunday => "日曜日", :monday => "月曜日", :tuesday => "火曜日",  :wednesday => "水曜日", :thursday => "木曜日",  :friday => "金曜日", :saturday => "土曜日"}
 end
 
 # 渡されたハッシュの長さを返す (何故僕は関数を定義しているのか自分でも意味がわからない)
 def getLength(hash)
-  return 0
+  return hash.length
 end
 
 # 渡されたハッシュを指定された形式で標準出力
 #  英語[sunday]は日本語で日曜日です。
-def putHash(hash)
-  
+def putsHash(hash)
+  hash.each do |key, val|
+    puts "英語[#{key}]は日本語で#{val}です。"
+  end
 end
