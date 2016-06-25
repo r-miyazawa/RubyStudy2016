@@ -61,7 +61,7 @@ p i
 print "exam 3 \n"
 print "1.\n"
 
-wday = { :sunday => "“ú—j“ú", :monday => "Œ—j“ú", :tuesday => "‰Î—j“ú", :wednesday => "…—j“ú", :thursday => "–Ø—j“ú", :friday => "‹à—j“ú", :Saturday => "“y—j“ú"}
+wday = { :sunday => "æ—¥æ›œæ—¥", :monday => "æœˆæ›œæ—¥", :tuesday => "ç«æ›œæ—¥", :wednesday => "æ°´æ›œæ—¥", :thursday => "æœ¨æ›œæ—¥", :friday => "é‡‘æ›œæ—¥", :Saturday => "åœŸæ›œæ—¥"}
 
 
 print "2.\n"
