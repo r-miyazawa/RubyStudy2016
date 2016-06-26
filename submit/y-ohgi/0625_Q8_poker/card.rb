@@ -6,6 +6,8 @@ class Card
   @@suit_mark = ['$', '♢', '♡', '♠', '♣']
   # スートの名称
   @@suit_name = ['ジョーカー', 'ダイヤ', 'ハート', 'スペード', 'クラブ']
+  # ナンバーの名称
+  @@number_name = [nil, 'A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
   
   @number # カードのナンバー
   @suit # カードのスート
@@ -31,6 +33,11 @@ class Card
     return [get_number, get_suit]
   end
 
+  # 視覚的に分かりやすいカード情報を取得
+  def get_visualize
+    return [@@number_name[@num], get_suit("mark")]
+  end
+  
   # カードのナンバーを取得
   def get_number
     return @num

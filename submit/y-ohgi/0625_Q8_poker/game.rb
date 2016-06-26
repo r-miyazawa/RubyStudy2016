@@ -28,6 +28,46 @@ class Game
     return @users
   end
 
+  # ユーザーのカードを変更する
+  # @param {number} index 変更するカードの配列番号
+  # @param {User} user=Player 変更する対象ユーザー。ユーザーはCPUとユーザーの1:1を前提とした仕様!
+  # @return {bolean} 成功したか失敗したか
+  def change_card(index, user=Player)
+    @users.each do |u|
+      if u.kind_of?(user)
+        u.set_card(index, @deck.draw_card)
+      end
+    end
+  end
+
+  # 視覚的に分かりやすいカード一覧を取得
+  # @param {User} user=Player カード一覧を取得するユーザー
+  # @param {bolean} isputs=true putsするか否か（エスケープを防ぐ目的）
+  # @return {array} カード一覧
+  def get_visualize_cards(user=Player, isputs=true)
+    res = []
+    cards = []
+    
+    @users.each do |u|
+      if u.kind_of?(user)
+        cards = u.get_visualize_cards
+      end
+    end
+
+    # エスケープする必要がある(putsする)場合
+    if isputs
+      cards.each do |card|
+        res << card.join(',')
+      end
+
+      res = res.join(' | ')
+    else
+      res = cards
+    end
+    
+    return res
+  end
+  
   protected
   # プレイユーザーを追加
   # @param {User} user 1ユーザーを表す
@@ -47,8 +87,15 @@ class Game
         user.add_card(@deck.draw_card)
       end
     end
-    
   end
+
+  # プレイユーザーのカードを回収する
+  def collect_cards
+    get_users.each do |user|
+      user.dump_cards
+    end
+  end
+  
 
   # デッキを生成
   def make_deck

@@ -34,6 +34,7 @@ class User
     return @cards
   end
 
+
   # 指定位置のカードを取得
   # @param {number} index 配列番号
   # @return {Card} 指定位置のカードを返す、存在しない場合はnilを返す
@@ -44,6 +45,19 @@ class User
     
     return @cards[index]
   end
+  
+  # 視覚的に分かりやすいカード一覧を取得
+  # @return {array} カード一覧
+  def get_visualize_cards
+    res = []
+    
+    @cards.each do |card|
+      res << card.get_visualize
+    end
+      
+    
+    return res
+  end
 
   # 指定位置のカードを交換
   # @param {number} index 配列番号
@@ -53,12 +67,19 @@ class User
     if index.kind_of?(Integer) === false|| (0..@cards.length-1).cover?(index) === false || card.kind_of?(Card) === false
       return nil
     end
-    p card
 
     oldcard = @cards[index]
     @cards[index] = card
 
     return oldcard
+  end
+
+  # カードを全て捨てる
+  # @return {array} 捨てたカード一覧
+  def dump_cards
+    cards = @cards
+    @cards = []
+    return @cards
   end
 
 end
