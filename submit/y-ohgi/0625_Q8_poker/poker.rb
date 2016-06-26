@@ -6,7 +6,10 @@ require './judge.rb'
 class Poker < Game
   # 使用する役一覧
   @@roles = ["royal_straight_flush", "straight_flush", "four_of_a_kind", "full_house", "flush", "straight", "three_of_a_kind", "two_pair", "one_pair"]
+  # 役の日本語訳
   @@roles_name = ["ロイヤルストレートフラッシュ", "ストレートフラッシュ", "フォーカード", "フルハウス", "フラッシュ", "ストレート", "スリーカード", "ツーペア", "ワンペア"]
+
+  @@cardnum = 5 # 使用するカード枚数
   
   def initialize
     super
@@ -16,13 +19,13 @@ class Poker < Game
     add_user(Cpu.new)
 
     # カードを5枚配る
-    deal_card(5)
+    deal_card(@@cardnum)
 
   end
 
   def goto_next_game
     collect_cards
-    deal_card(5)
+    deal_card(@@cardnum)
   end
 
 
@@ -73,12 +76,43 @@ class Poker < Game
     return role
   end
 
+  # cpuにイカサマをさせるメソッド
+  def do_cheat(user=Cpu)
+    role = nil
+    @users.each do |u|
+      if u.kind_of?(user)
+        
+        while true
+          u.dump_cards
+          @@cardnum.times do
+            u.add_card(@deck.draw_card)
+          end
+
+          role = @@roles.index(get_role(Cpu))
+          if role
+            break
+          end
+        end
+      end
+    end
+    return role
+  end
+  
+  # ゲームの結果を取得するメソッド
   def result
     res = {}
     result = 0
 
     playersrole = @@roles.index(get_role(Player))
     cpusrole = @@roles.index(get_role(Cpu))
+
+    # ところがどっこい
+    if cpusrole === nil
+      puts ""
+      puts "CPU「ところがどっこい」"
+      puts ""
+      cpusrole = do_cheat
+    end
 
     # XXX: うへあ、"no_pair"を得られるようにしとけばよかった
     if playersrole === nil && cpusrole === nil

@@ -73,6 +73,7 @@ class Main
         # reslt & ゲームを続けるかの確認
         puts ""
         puts "   --- RESLT ---"
+        result = @poker.result
         puts "貴方のハンド"
         puts @poker.get_visualize_cards(Player)
         puts "役は： #{@poker.get_role(Player, true)}"
@@ -82,7 +83,6 @@ class Main
         puts "役は： #{@poker.get_role(Cpu, true)}"
         puts ""
 
-        result = @poker.result
         if result[:result] === 0
           puts "あなたは勝ちました！"
         elsif result[:result] === 1
@@ -92,6 +92,9 @@ class Main
         end
         puts "勝ち: #{result[:win_count]} | 負け: #{result[:lose_count]} | 引分け: #{result[:draw_count]}"
 
+        phase = 10
+        
+      when 10
         puts "ゲームを続ける？(yes|no)"
         print ">> "
         i = $stdin.gets.chomp
