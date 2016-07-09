@@ -15,7 +15,7 @@
 
 【ポーカー役について】
 ロイヤルストレートフラッシュ　ストレートフラッシュのうち、数字が A, K, Q, J, 10 であること
-ストレートフラッシュ　　　　　ストレートとフラッシュがあること
+ストレートフラッシュ　　　　　OKストレートとフラッシュがあること
 フォーカード　　　　　　　　　OK同位札が 4 枚あること
 フルハウス　　　　　　　　　　OKワンペアとスリーカードがあること
 フラッシュ　　　　　　　　　　OK同種札が 5 枚あること
@@ -23,7 +23,7 @@
 スリーカード　　　　　　　　　OK同位札が 3 枚あること
 ツーペア　　　　　　　　　　　OKワンペアが 2 組あること
 ワンペア　　　　　　　　　　　OK同位札が 2 枚あること
-ノーペア　　　　　　　　　　　5 枚の札がバラバラであること
+ノーペア　　　　　　　　　　　OK5 枚の札がバラバラであること
 
 【コード条件】
 •クラス・メソッドの使用を検討すること
@@ -107,8 +107,7 @@ class Game
 		else
 			puts "from 1 to 5 select the card position"
 			num = checkNum.to_i
-			@hand.delete_at(num-1)
-			@hand.push(@rand.getRand)
+			@hand[num-1] = @deck.shift
 			puts "New Card"
 			pp @hand
 			compare
@@ -152,19 +151,44 @@ class Game
 		len = nEqual.length
 		lenS = sEqual.length
 		
-		if lenS == 1
-			a = splitSuit(sEqual)
-			puts "You have a Flush of #{a.pop}"
-		elsif len == 5
+		if len == 5
 			a = splitStraight(nEqual)
 			a.sort!
-			temp = a.inject {|sum, n| sum.to_s + n.to_s }
-			
-			unless /[1-13]/ =~ temp
-				puts "NOTHING"
-			else
-				##puts "Straight"
+			if a[4]==13 && a[0]<5
+				5.times do |i|
+					if a[i]<5
+						a[i]+=13
+					end
+				end
 			end
+			a.sort!
+			tm = (a[4]-4..a[4]).to_a
+			temp = a.inject {|sum,i| sum + i}
+			flag = true
+			
+			5.times do |i|
+				if tm[i] != a[i]
+					flag = false
+				end
+			end
+			straight = {"15"=>"A-5 straight","20"=>"2-6 straight","25"=>"3-7 straight",
+						"30"=>"4-8 straight","35"=>"5-9 straight","40"=>"6-10 straight",
+						"45"=>"7-J straight","50"=>"8-Q straight","55"=>"9-K straight",
+						"60"=>"10-A straight","65"=>"J-2 straight","70"=>"Q-3 straight",
+						"75"=>"K-4 straight"}
+			b = splitSuit(sEqual)
+			if !flag 
+				puts "NOTHING"
+			elsif lenS == 1 && temp == 60
+				puts "#{straight[temp.to_s]} ROYAL flush of #{b.pop}"
+			elsif lenS == 1
+				puts "#{straight[temp.to_s]} flush of #{b.pop}"
+			else
+				puts straight[temp.to_s]
+			end
+		elsif lenS == 1
+			a = splitSuit(sEqual)
+			puts "You have a Flush of #{a.pop}"
 		elsif len == 4
 			nEqual.sort!
 			a = splitNum(nEqual)
@@ -204,7 +228,7 @@ class Game
 			elsif /Q/ =~ temp
 				a.push(12)
 			elsif /K/ =~ temp
-				a.push(1)
+				a.push(13)
 			else
 				a.push(temp.to_i)
 			end
