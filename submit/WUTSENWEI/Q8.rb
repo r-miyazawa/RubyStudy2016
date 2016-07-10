@@ -49,6 +49,135 @@ def Check(tempCard)
 	return res
 end
 
+def hanndann(tempCard)
+	i = 0
+	tempNum = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+	while i < 5
+		j = 1
+		case tempCard[i][1]
+		when 1 then
+			tempNum[0] = tempNum[0] + 1
+		when 2 then
+			tempNum[1] = tempNum[1] + 1
+		when 3 then
+			tempNum[2] = tempNum[2] + 1
+		when 4 then
+			tempNum[3] = tempNum[3] + 1
+		when 5 then
+			tempNum[4] = tempNum[4] + 1
+		when 6 then
+			tempNum[5] = tempNum[5] + 1	
+		when 7 then
+			tempNum[6] = tempNum[6] + 1
+		when 8 then
+			tempNum[7] = tempNum[7] + 1
+		when 9 then
+			tempNum[8] = tempNum[8] + 1
+		when 10 then
+			tempNum[9] = tempNum[9] + 1
+		when 11 then
+			tempNum[10] = tempNum[10] + 1
+		when 12 then
+			tempNum[11] = tempNum[11] + 1
+		else
+			tempNum[12] = tempNum[12] + 1
+		end
+		i = i + 1
+	end
+
+	pokerNum = 0
+	pokerPrint = ""
+
+	i = 1
+	k = 0
+	while i < 5
+		if tempCard[0][0] == tempCard[i][0] then
+			k = k + 1
+		else
+			k = k
+		end
+		i = i + 1
+	end
+
+	i = 0
+	numMax = 0
+	numMin = 13
+	numTotal = 0
+	while i < 5
+		if numMax < tempCard[i][1] then
+			numMax = tempCard[i][1]
+		else
+			numMax = numMax
+		end
+	
+		if numMin > tempCard[i][1] then
+			numMin = tempCard[i][1]
+		else
+			numMin = numMin
+		end
+	
+		numTotal = numTotal + tempCard[i][1]
+		i = i + 1
+	end
+
+
+	if tempNum.count(4) == 1 then
+		pokerNum = 3
+	elsif tempNum.count(3) == 1 && tempNum.count(2) == 1 then
+		pokerNum = 4
+	elsif tempNum.count(3) == 1 then
+		pokerNum = 7
+	elsif tempNum.count(2) == 2 then
+		pokerNum = 8
+	elsif tempNum.count(2) == 1 then
+		pokerNum = 9
+	elsif tempNum.count(1) == 5 && k == 4 && (numMax - numMin) == 4 then
+		pokerNum = 2
+	elsif tempNum.count(1) == 5 && k == 4 && numTotal == 47 && (numMax - numMin) == 12 then ## 10,J,Q,K,A
+		if tempCard[0][0] == 1 then
+			pokerNum = 1
+		else
+			pokerNum = 2
+		end
+	elsif tempNum.count(1) == 5 && k == 4 then
+		pokerNum = 5
+	elsif tempNum.count(1) == 5 && (numMax - numMin) == 4 then
+		pokerNum = 6
+	elsif numTotal == 47 && (numMax - numMin) == 12 ## 10,J,Q,K,A
+		pokerNum = 6
+	else
+		pokerNum = 10
+	end
+	return pokerNum
+end
+
+def yaku(pokerNum)
+	case pokerNum
+	when 1 then
+		pokerPrint = "ロイヤルストレートフラッシュ"
+	when 2 then
+		pokerPrint = "ストレートフラッシュ"
+	when 3 then
+		pokerPrint = "フォーカード"
+	when 4 then
+		pokerPrint = "フルハウス"
+	when 5 then
+		pokerPrint = "フラッシュ"
+	when 6 then
+		pokerPrint = "ストレート"
+	when 7 then
+		pokerPrint = "スリーカード"
+	when 8 then
+		pokerPrint = "ツーペア"
+	when 9 then
+		pokerPrint = "ワンペア"
+	else
+		pokerPrint = "ノーペア"
+	end
+	return pokerPrint
+end
+
+
 
 
 card = Card.new()
@@ -123,133 +252,9 @@ if play == "yes"
 		print i," "
 	end
 else
-	print "\nあなたのポーカーは\n"
+
 end
 
-################################################
-i = 0
-tempNum = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-while i < 5
-	j = 1
-	case tempCard[i][1]
-	when 1 then
-		tempNum[0] = tempNum[0] + 1
-	when 2 then
-		tempNum[1] = tempNum[1] + 1
-	when 3 then
-		tempNum[2] = tempNum[2] + 1
-	when 4 then
-		tempNum[3] = tempNum[3] + 1
-	when 5 then
-		tempNum[4] = tempNum[4] + 1
-	when 6 then
-		tempNum[5] = tempNum[5] + 1	
-	when 7 then
-		tempNum[6] = tempNum[6] + 1
-	when 8 then
-		tempNum[7] = tempNum[7] + 1
-	when 9 then
-		tempNum[8] = tempNum[8] + 1
-	when 10 then
-		tempNum[9] = tempNum[9] + 1
-	when 11 then
-		tempNum[10] = tempNum[10] + 1
-	when 12 then
-		tempNum[11] = tempNum[11] + 1
-	else
-		tempNum[12] = tempNum[12] + 1
-	end
-	i = i + 1
-end
+pokerNum = hanndann(tempCard)
 
-pokerNum = 0
-pokerPrint = ""
-
-i = 1
-k = 0
-while i < 5
-	if tempCard[0][0] == tempCard[i][0] then
-		k = k + 1
-	else
-		k = k
-	end
-	i = i + 1
-end
-
-i = 0
-numMax = 0
-numMin = 13
-numTotal = 0
-while i < 5
-	if numMax < tempCard[i][1] then
-		numMax = tempCard[i][1]
-	else
-		numMax = numMax
-	end
-	
-	if numMin > tempCard[i][1] then
-		numMin = tempCard[i][1]
-	else
-		numMin = numMin
-	end
-	
-	numTotal = numTotal + tempCard[i][1]
-	i = i + 1
-end
-
-
-if tempNum.count(4) == 1 then
-	pokerNum = 3
-elsif tempNum.count(3) == 1 && tempNum.count(2) == 1 then
-	pokerNum = 4
-elsif tempNum.count(3) == 1 then
-	pokerNum = 7
-elsif tempNum.count(2) == 2 then
-	pokerNum = 8
-elsif tempNum.count(2) == 1 then
-	pokerNum = 9
-elsif tempNum.count(1) == 5 && k == 4 && (numMax - numMin) == 4 then
-	pokerNum = 2
-elsif tempNum.count(1) == 5 && k == 4 && numTotal == 47 && (numMax - numMin) == 12 then ## 10,J,Q,K,A
-	if tempCard[0][0] == 1 then
-		pokerNum = 1
-	else
-		pokerNum = 2
-	end
-elsif tempNum.count(1) == 5 && k == 4 then
-	pokerNum = 5
-elsif tempNum.count(1) == 5 && (numMax - numMin) == 4 then
-	pokerNum = 6
-elsif numTotal == 47 && (numMax - numMin) == 12 ## 10,J,Q,K,A
-	pokerNum = 6
-else
-	pokerNum = 10
-end
-
-case pokerNum
-when 1 then
-	pokerPrint = "ロイヤルストレートフラッシュ"
-when 2 then
-	pokerPrint = "ストレートフラッシュ"
-when 3 then
-	pokerPrint = "フォーカード"
-when 4 then
-	pokerPrint = "フルハウス"
-when 5 then
-	pokerPrint = "フラッシュ"
-when 6 then
-	pokerPrint = "ストレート"
-when 7 then
-	pokerPrint = "スリーカード"
-when 8 then
-	pokerPrint = "ツーペア"
-when 9 then
-	pokerPrint = "ワンペア"
-else
-	pokerPrint = "ノーペア"
-end
-
-################################################
-
-
-print "\n",pokerPrint
+print "\n",yaku(pokerNum)
