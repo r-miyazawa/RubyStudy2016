@@ -96,7 +96,7 @@ class Game
 		tmp = compare(handP)
 		res = tmp == false ? "NOTHING" : tmp
 		puts "Your hand #{handP}"
-		puts "PC hand #{handC}resu"
+		puts "PC hand #{handC}"
 		puts "Player :#{res}    PC :#{res1}"
 	end
 	
@@ -272,7 +272,7 @@ end
 begin
 	win = 0
 	lose = 0	
-	draw = 1
+	draw = 0
 	rndCard = Game.new
 end while rndCard.start
 
