@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+class Bmi < Thor
+
+	default_command :calculate
+
+	desc "calculate","bmiを計算する"
+	option :height, type: :numeric, aliases: "-h", desc: "the height"
+	option :weight, type: :numeric, aliases: "-w", desc: "the weight"
+	def calculate
+		we = options[:weight].to_f
+		he = options[:height].to_f/100  
+		puts we / he**2
+	end
+end
+
+Bmi.start
+
