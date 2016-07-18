@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+class Bmi < Thor
+  default_command :bmi
+
+  desc "bmi", "display bmi result"
+  option :height, type: :numeric, aliases: "-h", desc: "height"
+  option :weight, type: :numeric, aliases: "-w", desc: "weight"
+  def bmi
+    height = options[:height].to_f/100
+    weight = options[:weight].to_f
+    bmi = weight/(height*height)
+    puts "[bmi=#{bmi.round(1)}]"
+  end
+end
+
+Bmi.start
