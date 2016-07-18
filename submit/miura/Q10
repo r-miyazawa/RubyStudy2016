@@ -1,0 +1,14 @@
+!#/usr/bin/env ruby
+require 'thor'
+
+class Bmi < Thor
+ desc "bmi","calculate bmi"
+ option :weight, type: :numeric, aliases: "-w", desc: "the weight"
+ option :height, type: :numeric, aliases: "-h", desc: "the height"
+ def bmi
+  bmi = options[:weight].to_f / (options[:height].to_f * options[:height].to_f)
+  puts "[bmi=#{bmi}]"
+ end
+end
+
+Bmi.start
