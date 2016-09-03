@@ -1,0 +1,54 @@
+問1
+(1)
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+
+(2)
+[4, 3, 2, 1]
+[4, 3, 2]
+[4, 3]
+
+(3)
+[-15, -12]
+
+(4)
+o2
+
+(5)
+[0, 1, 1, 2, 3, 5, 8, 13, 21]
+
+問2
+1...10だと10を含まない
+1..10だと10を含む
+
+問3
+reserveは配列の要素を反転させる
+reserve!は配列の要素を反転させ変更する
+
+問4
+class Tool
+  def use
+    puts "color:#{@color} tool:#{self.class.to_s}"
+  end
+ 
+  def initialize(color)
+    @color = color
+  end
+end
+
+class Hammer < Tool
+  def use
+    super
+    puts "ハンマーを使う"
+  end
+end
+
+Hammer.new("red").use
