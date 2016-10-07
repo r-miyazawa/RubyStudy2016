@@ -35,7 +35,7 @@ class Count < Thor
 
   # 対象文字列の出現回数のカウント
   def search(term)
-    file.scan(term).count
+    file.scan(term).count || raise IllegalError.new("Illegal error")
   end
 
   # 対象文字列の出現行数のカウント
@@ -48,7 +48,7 @@ class Count < Thor
       result << i+1 if f[i].scan(term).first
     end
     
-    result.count
+    result.count || raise IllegalError.new("Illegal error")
   end
 
 end
