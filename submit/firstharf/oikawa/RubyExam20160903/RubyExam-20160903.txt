@@ -10,6 +10,18 @@ http://ruby-doc.com/
 mark = '*'
 10.downto(1) {|i| print((mark * i) + "\n") }
 
+▼answer
+**********
+*********
+********
+*******
+******
+*****
+****
+***
+**
+*
+
 <ヒント>
 downtoメソッド参考
 http://ruby-doc.org/core-2.0/Integer.html
@@ -21,6 +33,11 @@ p ary[1..-1]
 p ary[1...-1]
 p ary[1...-2]
 
+▼answer
+[4, 3, 2, 1]
+[4, 3, 2]
+[4, 3]
+
 <ヒント>
 reverseメソッド参考
 http://www.ruby-doc.org/core-2.0/Array.html
@@ -28,6 +45,9 @@ http://www.ruby-doc.org/core-2.0/Array.html
 (3)
 ary = (-15..-10).to_a
 p ary.select {|i| i % 3 == 0 }
+
+▼answer
+[-15, -12]
 
 <ヒント>
 selectメソッド参考
@@ -43,6 +63,9 @@ else
   puts("o2")
 end
 
+▼answer
+o2
+
 (5)
 def test(count=9)
   count -= 2
@@ -55,6 +78,9 @@ def test(count=9)
 end
 p test
 
+▼answer
+[0, 1, 1, 2, 3, 5, 8, 13, 21]
+
 <ヒント>
 配列にマイナスの添字を指定可能　
 a = [0,1,2,3,4,5]
@@ -63,7 +89,16 @@ p a[-3]      #=>3
 
 問2.範囲演算子の「...」と「..」の意味と違いを日本語で説明せよ
 
+▼answer
+式1から式2までの範囲オブジェクトを返す。
+... -> 最大値を含まない Range オブジェクトを作る範囲演算子。
+.. -> 最大値を含む Range オブジェクトを作る範囲演算子。
+
 問3.reverseメソッドとreverse!メソッドの違いを説明せよ
+
+▼answer
+reverse -> 配列の要素の順番を反転させる。元になった配列とは別の新しい配列を返す。
+reverse! -> 配列の要素の順番を反転させる。元になった配列自身の順番を反転させる。
 
 問4.下記コードの実行結果となるようにHammerクラスの処理を記載せよ
 
@@ -83,3 +118,18 @@ Hammer.new("red").use
 color:red tool:Hammer
 ハンマーを使う
 ----------------------------------
+
+▼answer
+
+class Hammer
+  def use
+    puts "color:#{@color} tool:#{self.class.to_s}"
+    puts "ハンマーを使う"
+  end
+ 
+  def initialize(color)
+    @color = color
+  end
+end
+
+Hammer.new("red").use

@@ -1,5 +1,0 @@
-!#/usr/bin/env ruby
-require 'thor'
-
-class Wcex < Thor
-
