@@ -2,7 +2,7 @@
 
 問1.
 
-次のhtmlから<b>タグ内の文字列、<p>タグ内の文字列の一覧を正規表現を用いて値を出力せよ
+次のhtmlから<b>タグ内の文字列、<p>タグ内の文字列の一覧を正規表現を用いて値を実行結果のように出力せよ
 ※htmlはファイルまたは文字列として取り込んでよし
 ```
 <html>
@@ -15,19 +15,46 @@ this is a <p>book</p>.
 </html>
 ```
 
+[実行結果]<a>タグ
+```
+sato
+suzuki
+tanaka
+```
+
+[実行結果]<p>タグ
+```
+pen
+book
+```
+
 問2.
 
-次のhtmlから<a>タグ内の文字列、<a>タグ属性のhrefに含むpref,cityの文字列の一覧を正規表現を用いて値を出力せよ
+次のhtmlから<a>タグ内の文字列、<a>タグ属性のhrefに含むpref,cityの文字列の一覧を正規表現を用いて値を実行結果のように出力せよ
 ※htmlはファイルまたは文字列として取り込んでよし
 ```
 <html>
 <body>
 <p><a href="zipcode.php?pref=13&city=1131160&id=49058">minami ikebukuro</a></p>
-<p><a href="zipcode.php?pref=13&city=1131160&id=49059">minami ootsuka</a></p>
-<p><a href="zipcode.php?pref=13&city=1131160&id=49060">minami nagasaki</a></p>
-<p><a href="zipcode.php?pref=13&city=1131160&id=49061">mejiro</a></p>
+<p><a href="zipcode.php?pref=14&city=1131161&id=49059">minami ootsuka</a></p>
+<p><a href="zipcode.php?pref=15&city=1131162&id=49060">minami nagasaki</a></p>
+<p><a href="zipcode.php?pref=16&city=1131163&id=49061">mejiro</a></p>
 </body>
 </html>
+```
+
+[実行結果]<a>タグ文字列
+```
+minami ikebukuro
+minami ootsuka
+minami nagasaki
+mejiro
+```
+
+[実行結果]pref,city文字列
+```
+pref=13,14,15,16
+city=1131160,1131161,1131162,1131163
 ```
 
 【ヒント】
