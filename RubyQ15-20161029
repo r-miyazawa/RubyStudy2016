@@ -1,0 +1,38 @@
+課題15
+
+問1.
+
+次のhtmlから<b>タグ内の文字列、<p>タグ内の文字列の一覧を正規表現を用いて値を出力せよ
+※htmlはファイルまたは文字列として取り込んでよし
+```
+<html>
+<body>
+my name is <b>sato</b>.my name is <b>suzuki</b>.
+my name is <b>tanaka</b>.
+this is a <p>pen</p>.
+this is a <p>book</p>.
+</body>
+</html>
+```
+
+問2.
+
+次のhtmlから<a>タグ内の文字列、<a>タグ属性のhrefに含むpref,cityの文字列の一覧を正規表現を用いて値を出力せよ
+※htmlはファイルまたは文字列として取り込んでよし
+```
+<html>
+<body>
+<p><a href="zipcode.php?pref=13&city=1131160&id=49058">minami ikebukuro</a></p>
+<p><a href="zipcode.php?pref=13&city=1131160&id=49059">minami ootsuka</a></p>
+<p><a href="zipcode.php?pref=13&city=1131160&id=49060">minami nagasaki</a></p>
+<p><a href="zipcode.php?pref=13&city=1131160&id=49061">mejiro</a></p>
+</body>
+</html>
+```
+
+【機能】
+•入力値の検証を行うこと
+
+【コード条件】
+•スタイルガイドに沿って作成すること
+•クラス・メソッドの使用を考えること
