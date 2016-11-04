@@ -42,7 +42,6 @@
 
 print "ユーザ名を大文字で先頭に@を入れて入力してください\n"
 user = gets.chop
-if user
 print "電話番号を入力してください\n"
 phone = gets.to_i
 print "郵便番号を入力してください\n"
