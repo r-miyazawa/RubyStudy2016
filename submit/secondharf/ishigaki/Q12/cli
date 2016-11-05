@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+require 'thor'
+
+class Test < Thor
+  desc 'say','say : hello'
+  def say(name)
+    puts "hello #{name}"
+  end
+  
+  option :f
+  option :l
+  option :c
+  desc 'count [file_name] [str]', 'test'
+  def count(file_name, str)
+	  flg = false
+	  f = "null"
+	  # -fがあった場合
+	  options[:f].nil? ? f=file_name : f=options[:f]
+	  
+	  # ファイルの検索
+	  if File.exist?(f) then
+	  	File.open(f) do |file|
+	  	  file.each_line do |labmen|
+	  	  # 行にstrを含んでいたら
+	  	    if labmen.include?(str) then
+	  	      if !(options[:l].nil?) then
+	  	        puts "[line=#{file.lineno}]"
+	  	      elsif !(options[:c].nil?) then
+	  	        puts "[count=#{labmen.index(str)}]"
+	  	      else
+				puts "[line=#{file.lineno} count=#{labmen.index(str)}]"
+			  end
+			  flg = true
+			end
+	  	  end
+	  	  puts "Illegal error" if flg == false
+	  	end
+	  else
+	    puts "No such file"
+	  end
+  end
+end
+
+Test.start(ARGV)
