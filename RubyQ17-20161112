@@ -1,0 +1,46 @@
+課題17
+
+次のテーブルを作成し、ユーザの登録人数を取得し、人数分name,email,password情報を入れ、最後に登録者の情報一覧を出力するコードを作成せよ
+※値の検証はmodelのvalidationを使用すること
+
+create table users (
+    id integer primary key,
+    name text,
+    add text,
+    email text,
+    password text,
+    created_at,
+    updated_at
+);
+
+コマンドライン実行：
+
+[登録人数を入れてください]
+2
+[1人目のuser情報を登録してください]
+>>name?
+>>add?
+>>email?
+>>password?
+
+[2人目のuser情報を登録してください]
+>>name?
+>>add?
+>>email
+>>password?
+
+登録者情報を出力
+
+検証条件：
+name 空でないこと
+email 空でないこと、他ユーザとの重複は許容
+add 空でないこと、他ユーザとの重複は禁止
+password 空でないこと、文字数が6文字以上20文字以下
+
+【参考】
+http://railsguides.jp/active_record_validations.html
+
+【コード条件】
+・入力バリデーションを行うこと（modelでvalidationチェックを行うこと）
+•スタイルガイドに沿って作成すること
+•クラス・メソッドの使用を考えること
