@@ -1,0 +1,23 @@
+課題21
+
+サイトurlから指定の画像イメージをダウンロードするdownimageコマンドを作成せよ
+
+downimageコマンド
+　コマンド:downimage [サイトurl] [出力ディレクトリ] -e [拡張子(複数ある場合はカンマ区切り)]
+   　結果:
+   　成功時[download_count = ? time = ?] ※download_countはダウンロード数,timeはダウンロードのかかった時間
+   　エラー時[エラーメッセージ]
+    
+-eオプションを指定しない場合はデフォルトpngのみダウンロード対象とする
+
+例)
+downimage http://hoge.jp/test.html ./picture/ -e png,jpg
+
+【機能】
+•入力検証を行うこと（文字チェック）
+
+【コード条件】
+•thorライブラリを使用すること
+•mechanizeまたはnokogiriライブラリを使用すること
+•スタイルガイドに沿って作成すること
+•クラス・メソッドの使用を考えること
