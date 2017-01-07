@@ -37,5 +37,5 @@
 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 
-5.
-
+5.以下の為替サイトよりBid(売値)、Ask(買値)、Change(始値比)を取得し出力せよ
+http://info.finance.yahoo.co.jp/fx/detail/?code=USDJPY=FX
