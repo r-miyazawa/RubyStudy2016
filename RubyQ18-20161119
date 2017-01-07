@@ -1,0 +1,17 @@
+課題18
+
+次のサイトより、いずれかの１つの記事を選び(自由)、記事のタイトル・本文・記事の投稿日時・記事の画像URLを取得し
+DB環境(Sqlite)へ格納せよ
+
+http://jp.reuters.com/
+
+【参考】
+
+open-uri
+https://docs.ruby-lang.org/ja/latest/library/open=2duri.html
+アクティブレコード：
+http://railsguides.jp/active_record_validations.html
+
+【コード条件】
+•スタイルガイドに沿って作成すること
+•クラス・メソッドの使用を考えること
