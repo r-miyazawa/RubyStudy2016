@@ -42,43 +42,115 @@
 http://info.finance.yahoo.co.jp/fx/detail/?code=USDJPY=FX
 =end
 
-puts '1.1)'
+require 'open-uri'
+require 'nokogiri'
+require 'openssl'
 
-puts "*"
-puts "**"
-puts "***"
-puts "****"
-puts "*****"
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-puts '1.2-1)'
+puts '問1.1)'
 
-puts "    *"
-puts "   ***"
-puts "  *****"
-puts " *******"
-puts "*********"
+a = 1
+5.times do
+	a.times do
+		print "*"
+	end
+	print "\n"
+	a = a + 1
+end
 
-puts '1.2-2)'
+puts '問1.2-1)'
 
-puts "*********"
-puts " *******"
-puts "  *****"
-puts "   ***"
-puts "    *"
+a = 1
+b = 4
+5.times do
+	b.times do
+		print " "
+	end
+	a.times do
+		print "*"
+	end
+	print "\n"
+	a = a + 2
+	b = b - 1
+end
 
-puts '2.'
+puts '問1.2-2)'
 
-counter = 1
-num = 50
-puts num
+a = 9
+b = 0
+5.times do
+	b.times do
+		print " "
+	end
+	a.times do
+		print "*"
+	end
+	print "\n"
+	a = a - 2
+	b = b + 1
+end
+
+puts '問2'
+
+ans = 50
+i = 1
+puts ans
 begin
-	sum = counter += 1
-	puts num - sum
-	counter += 1
-end while counter <= 10
+	ans = ans - i
+	puts ans
+	i += 1
+end while ans > 0
 
-puts '3.'
+puts '問3'
 
-puts '4.'
+ary1 = []
+ary2 = []
+ary3 = []
+ary4 = []
+tmp = 1
 
-puts '5.'
+5.times do
+	ary1.push(tmp)
+	tmp = tmp * 2
+end
+tmp = 1
+5.times do
+	ary2.push(tmp)
+	tmp = tmp * 3
+end
+tmp = 1
+5.times do
+	ary3.push(tmp)
+	tmp = tmp * 4
+end
+tmp = 1
+5.times do
+	ary4.push(tmp)
+	tmp = tmp * 5
+end
+p ary1
+p ary2
+p ary3
+p ary4
+
+puts '問4'
+
+def num(n)
+  return 1 if n == 1
+  return 1 if n == 2
+  num(n-1) + num(n-2)
+end
+
+for i in 1...20
+  print "#{num(i)} "
+end
+
+puts '問5'
+
+doc = Nokogiri::HTML(open("http://info.finance.yahoo.co.jp/fx/detail/?code=USDJPY=FX",&:read))
+doc.xpath('//ul[@class="rateList"]').each do |node|
+	p "[Bid]#{node.xpath('//dd[@id="USDJPY_detail_bid"]').text}"
+	p "[Ask]#{node.xpath('//dd[@id="USDJPY_detail_ask"]').text}"
+	p "[Change]#{node.xpath('//dd[@id="USDJPY_detail_change"]').text}"
+end
