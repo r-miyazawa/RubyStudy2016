@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+require 'thor'
+
+class Count < Thor
+  
+  desc "execute", "ファイルの文字列を検索"
+
+  option :file, type: :string, aliases: "-f", desc: "ファイルの選択"
+  option :words, type: :string, aliases: "-c", desc: "文字列の数"
+  option :lines, type: :string, aliases: "-l", desc: "文字列行数を表示"
+  
+  def execute(filename, term)
+    setFile(filename)
+    
+    if options[:words]
+      puts "結果:#{search(term)}"
+    elsif options[:lines]
+      puts "結果:#{search_line(term)}"
+    else options[:file]
+      puts "結果:[line = #{search_line(term)} count = #{search(term)}]"
+    end
+  end
+  
+  private
+  def setFile(name = "")
+    @setFile ||= File.read(name)
+  end
+
+  def search(term)
+    setFile.scan(term).count
+  end
+
+  def search_line(term)
+    result = []
+    f = setFile.split
+    
+    f.each_index do |i|
+      result << i+1 if f[i].scan(term).first
+    end
+    
+    result.count
+  end
+
+end
+
+Count.start
