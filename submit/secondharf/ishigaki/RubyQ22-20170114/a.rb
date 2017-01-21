@@ -5,7 +5,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 Anemone.crawl("http://news.yahoo.co.jp/topics", :depth_limit => 3) do |anemone|
 	anemone.focus_crawl do |page|
     	page.links.keep_if { |link|
-      		link.to_s =~ /pickup/
+      		link.to_s =~ /search_result.html?k=&i=211&ic=002&it=0000&lj=/
     	}
   	end
   	
